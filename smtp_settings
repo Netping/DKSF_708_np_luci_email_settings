@@ -1,0 +1,6 @@
+
+config info 'Settings'
+	option smtp_server_encryption_enabled '1'
+	option smtp_server_port '443'
+	option smtp_server_authentication_enabled '0'
+	option smtp_server_mail_signature '(c) NetPing'

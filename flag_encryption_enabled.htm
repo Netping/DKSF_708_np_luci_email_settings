@@ -1,0 +1,47 @@
+<%+cbi/valueheader%>
+
+<script type="text/javascript">//<![CDATA[
+	
+	function test(){
+		
+		var port = document.getElementById('widget.cbid.smtp_settings.Settings.smtp_server_port');
+		
+		var checkbox = document.getElementById('custom_flag');
+		
+		var checkbox_value_hidden = document.getElementById('custom_flag_hidden');
+		
+		if (port != null && checkbox != null){
+				
+			if (checkbox.value == '1' && checkbox.hasAttribute('checked')){
+				
+				port.value = '25';
+				
+				checkbox.removeAttribute('checked');
+				
+				checkbox.value = '0';
+				
+				checkbox_value_hidden.value = '0';
+				
+			} else if (checkbox.value == '0' && !checkbox.hasAttribute('checked')) {
+				
+				port.value = '443';
+				
+				checkbox.setAttribute('checked', '');
+				
+				checkbox.value = '1';
+				
+				checkbox_value_hidden.value = '1';
+				
+			}
+			
+		} 
+		
+	}
+
+//]]></script>
+
+<input id="custom_flag_hidden" type="hidden" name="cbi.cbe.smtp_settings.Settings.smtp_server_encryption_enabled" value="<% write(self:cfgvalue(section) or self.default) %>">
+
+<input id="custom_flag" name="cbid.smtp_settings.Settings.smtp_server_encryption_enabled" onchange="test();" type="checkbox" value="<% write(self:cfgvalue(section) or self.default) %>" <% if (self:cfgvalue(section) == '1') then write('checked') else write('') end %>>
+
+<%+cbi/valuefooter%>
